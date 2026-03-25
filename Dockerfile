@@ -31,4 +31,5 @@ RUN composer install --no-dev --optimize-autoloader
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # 8. 起動時にマイグレーションを実行
-CMD php artisan migrate --force && apache2-foreground
+# 設定キャッシュを一度クリアしてから、マイグレーションと起動を行う
+CMD php artisan config:clear && php artisan migrate --force && apache2-foreground
