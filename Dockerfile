@@ -29,3 +29,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 # 7. 権限の設定
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# 8. 起動時にマイグレーションを実行
+CMD php artisan migrate --force && apache2-foreground
